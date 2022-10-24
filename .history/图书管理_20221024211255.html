@@ -108,19 +108,16 @@
                 },
                 tips: function() {
                     var that = this
-                    if (this.bookname.length <= 0 || this.author.length <= 0 || this.publisher.length <= 0) {
+                    if (that.bookname.length <= 0 || this.author.length <= 0 || this.publisher.length <= 0) {
                         return alert('请填写完整')
                     }
                     $.post('http://www.liulongbin.top:3006/api/addbook', {
-                        bookname: this.bookname,
-                        author: this.author,
-                        publisher: this.publisher
+                        bookname: that.bookname,
+                        author: that.author,
+                        publisher: that.publisher
                     }, function(res) {
                         if (res.status !== 201) return alert('出错')
                         that.getList()
-                        that.bookname = ''
-                        that.author = ''
-                        that.publisher = ''
                     })
                 }
 

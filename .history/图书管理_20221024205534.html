@@ -28,17 +28,17 @@
 
                 <div class="input-group">
                     <div class="input-group-addon">书名</div>
-                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入书名" v-model="bookname">
+                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入书名">
                 </div>
                 <div class="input-group">
                     <div class="input-group-addon">作者</div>
-                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入作者" v-model="author">
+                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入作者">
                 </div>
                 <div class="input-group">
                     <div class="input-group-addon">出版社</div>
-                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入出版社" v-model="publisher">
+                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入出版社">
                 </div>
-                <button id="btnAdd" class="btn btn-primary" @click="tips">添加</button>
+                <button id="btnAdd" class="btn btn-primary">添加</button>
             </div>
         </div>
 
@@ -75,9 +75,6 @@
         var app = new Vue({
             el: '#main',
             data: {
-                bookname: '',
-                author: '',
-                publisher: '',
                 list: [{
                     id: 1,
                     bookname: '三国演义',
@@ -89,15 +86,21 @@
             methods: {
                 handle: function(id) {
                     var idd = id
-                    var that = this
-                    $.get('http://www.liulongbin.top:3006/api/delbook', {
+                    $.get('http://http://www.liulongbin.top:3006/api/delbooks', {
                         id: idd
                     }, function(res) {
                         if (res.status !== 200) return alert('删除失败')
-                        that.getList()
+                        getbookList()
                     })
                 },
-                getList: function() {
+
+
+            },
+            //生命周期函数，一加载页面就执行
+            created() {
+                getbookList()
+
+                getbookList: unction() {
                     var that = this
                     $.get('http://www.liulongbin.top:3006/api/getbooks', function(res) {
                         if (res.status !== 200) return alert('失败')
@@ -105,35 +108,7 @@
                         that.list = res.data
 
                     })
-                },
-                tips: function() {
-                    var that = this
-                    if (this.bookname.length <= 0 || this.author.length <= 0 || this.publisher.length <= 0) {
-                        return alert('请填写完整')
-                    }
-                    $.post('http://www.liulongbin.top:3006/api/addbook', {
-                        bookname: this.bookname,
-                        author: this.author,
-                        publisher: this.publisher
-                    }, function(res) {
-                        if (res.status !== 201) return alert('出错')
-                        that.getList()
-                        that.bookname = ''
-                        that.author = ''
-                        that.publisher = ''
-                    })
                 }
-
-
-            },
-            //生命周期函数，一加载页面就执行
-            created() {
-                this.getList()
-
-
-
-
-
 
             }
 

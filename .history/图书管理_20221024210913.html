@@ -107,7 +107,6 @@
                     })
                 },
                 tips: function() {
-                    var that = this
                     if (this.bookname.length <= 0 || this.author.length <= 0 || this.publisher.length <= 0) {
                         return alert('请填写完整')
                     }
@@ -116,11 +115,7 @@
                         author: this.author,
                         publisher: this.publisher
                     }, function(res) {
-                        if (res.status !== 201) return alert('出错')
-                        that.getList()
-                        that.bookname = ''
-                        that.author = ''
-                        that.publisher = ''
+                        if (res.status !== 200) return alert('出错')
                     })
                 }
 
