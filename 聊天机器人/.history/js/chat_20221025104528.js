@@ -25,7 +25,7 @@ function getMsg(text) {
             spoken: text
         },
         success: function(res) {
-            // console.log(res.message)
+            console.log(res.message)
             if (res.message == 'success')
                 var msg = res.data.info.text
             $('.talk_list').append(' <li class="left_word"><img src="img/person01.png" /> <span>' + msg + '</span></li>')
