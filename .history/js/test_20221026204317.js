@@ -18,16 +18,6 @@ function request(option) {
     var xhr = new XMLHttpRequest
     var da = data(option.data)
 
-    if (option.method.toUpperCase() === 'GET') {
-        xhr.open(option.method, option.url + '?' + da)
-        xhr.send()
-    } else if (option.method.toUpperCase() === 'POST') {
-        xhr.open(option.method, option.url)
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoder')
-        xhr.send(da)
-    }
-
-
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var result = JSON.parse(xhr.responseText)

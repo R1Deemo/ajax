@@ -18,13 +18,12 @@ function request(option) {
     var xhr = new XMLHttpRequest
     var da = data(option.data)
 
-    if (option.method.toUpperCase() === 'GET') {
-        xhr.open(option.method, option.url + '?' + da)
-        xhr.send()
-    } else if (option.method.toUpperCase() === 'POST') {
-        xhr.open(option.method, option.url)
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoder')
+    if (option.mathod.toUpperCase() === 'GET') {
+        xhr.open('get')
         xhr.send(da)
+    } else if (
+        option.mathod.toUpperCase() === 'POST') {
+
     }
 
 
