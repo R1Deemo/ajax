@@ -18,7 +18,7 @@ $(function() {
 
     // 添加回车发送功能
     $('#ipt').on('keyup', function(e) {
-        if (e.keyCode === 13)
+        if (e.keycode === 13)
             $('#btnSend').click()
     })
 })

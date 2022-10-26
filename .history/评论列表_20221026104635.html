@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./lib/bootstrap.css" />
+    <script src="./lib/jquery.js"></script>
+    <script src="./js/cmt.js"></script>
+    <script src="./lib/vue.js"></script>
+</head>
+
+<body style="padding: 15px;">
+    <div id="app">
+        <!-- 评论面板 -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">评论列表</h3>
+            </div>
+            <form class="panel-body">
+
+                <div>
+                    <div>评论人：</div>
+                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入评论人">
+                </div>
+                <div>
+                    <div>评论内容：</div>
+                    <textarea class="form-control" id="exampleInputAmount" placeholder="请输入评论内容（最多120字）"></textarea>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">发表评论</button>
+
+
+            </form>
+        </div>
+
+
+        <!-- 评论列表 -->
+
+        <ul class="list-group">
+            <li class="list-group-item " v-for="item in list">
+                <span class="badge" style="background-color: #F0AD4E;">评论时间：{{item.time}}</span>
+                <span class="badge" style="background-color: #5BC0DE;">评论人：{{item.username}}</span> {{item.content}}
+            </li>
+
+        </ul>
+
+
+    </div>
+
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            list: [{
+                content: "唱吧丝毫不次啊办次啊办手抄报卡加斯本次课教案被开除几百块成本撒本次阿巴斯补差价包括基本形成控制基本唱吧丝毫不次啊办次啊办手抄报卡加斯本次课教案被开除几百块唱吧丝毫不次啊办次啊办手抄报卡加斯本次课教案被开除几百块唱吧丝毫不次啊办次啊办手抄报卡加斯本次课教案被开除几百块唱吧丝毫不次啊办次啊办手抄报卡加斯本次课教案被开除几百块唱吧丝毫不次啊办次啊办手抄报卡加斯本次课教案被开除几百块唱吧丝毫不次啊办次啊办手抄报卡加斯本次课教案被开除几百块唱吧丝毫不次啊办次啊办手抄报卡加斯本次课教案被开除几百块唱吧丝毫不次啊办次啊办手抄报卡加斯本次课教案被开除几百块唱吧丝毫不次啊办次啊办手抄报卡加斯本次课教案被开除几百块唱吧丝毫不次啊办次啊办手抄报卡加斯本次课教案被开除几百块唱吧丝毫不次啊办次啊办手抄报卡加斯本次课教案被开除几百块唱吧丝毫不次啊办次啊办手抄报卡加斯本次课教案被开除几百块唱吧丝毫不次啊办次啊办手抄报卡加斯本次课教案被开除几百块",
+                id: 15,
+                time: "2022-10-26 10:19:26",
+                username: "za"
+            }]
+
+        },
+        methods: {
+
+        },
+        created() {
+            var that = this
+            $.ajax({
+                method: 'get',
+                url: 'http://www.liulongbin.top:3006/api/cmtlist',
+                success: function(res) {
+                    console.log(res.data)
+                        // $('#list-group').
+                    that.list = res.data
+                        // console.log(this.list)
+
+
+                }
+            })
+        },
+    })
+</script>
+
+</html>
