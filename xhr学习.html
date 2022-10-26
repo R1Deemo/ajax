@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=`, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var xhr = new XMLHttpRequest()
+
+    xhr.open('get', 'http://www.liulongbin.top:3006/api/getbooks')
+    xhr.send()
+    xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText)
+            }
+        }
+        // 演示url的编码与解码
+    var str = '大帅哥' //%E5%A4%A7%E5%B8%85%E5%93%A5
+    var str1 = encodeURI(str)
+    console.log(str1)
+    var str2 = decodeURI('%E5%A4%A7%E5%B8%85%E5%93%A5')
+    console.log(str2)
+</script>
+
+</html>
