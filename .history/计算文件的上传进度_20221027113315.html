@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./lib/bootstrap.css" />
-    <script src="./lib/jquery.js"></script>
 </head>
 
 <body>
@@ -16,8 +15,8 @@
 
     <!-- bootstrap中的进度条 -->
     <div class="progress" style="width:500px">
-        <div class="progress-bar progress-bar-striped active" style="width: 0%" id="percent">
-            0%
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+            <span class="sr-only">45% Complete</span>
         </div>
     </div>
     <br/>
@@ -40,8 +39,7 @@
         xhr.upload.onprogress = function(e) {
             if (e.lengthComputable) {
                 var procentComplete = Math.ceil((e.loaded / e.total) * 100)
-
-                $('#percent').attr('style', 'width:' + procentComplete + '%').html(procentComplete + '%')
+                console.log(procentComplete)
             }
         }
 
