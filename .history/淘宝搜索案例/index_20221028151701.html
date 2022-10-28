@@ -49,7 +49,7 @@
 
         // 定义防抖函数
         function debounceSearch(keywords) {
-            timer = setTimeout(function() {
+            tiemr = setTimeout(function() {
                 // 发起jsonp请求
                 getSuggestList(keywords)
             }, 500)
@@ -60,7 +60,7 @@
             var data = $(this).val().trim()
             if (data.length <= 0)
                 return $('#suggest-list').empty().hide()
-                    //  getSuggestList(data)
+            getSuggestList(data)
             debounceSearch(data)
         })
 
