@@ -46,9 +46,8 @@
     $(function() {
         // 实现输入框的防抖
         var timer = null //定义防抖的timer
-            //定义全局缓存对象
-        var cacheObj = {}
-            // 定义防抖函数
+
+        // 定义防抖函数
         function debounceSearch(keywords) {
             timer = setTimeout(function() {
                 // 发起jsonp请求
@@ -62,11 +61,6 @@
             if (data.length <= 0)
                 return $('#suggest-list').empty().hide()
                     //  getSuggestList(data)
-
-
-            // 先判断缓存中是否有数据
-            if (cacheObj[data])
-                return renderSuggestList(catchObj[data])
             debounceSearch(data)
         })
 
@@ -77,7 +71,7 @@
                 url: 'http://suggest.taobao.com/sug?q=' + kw,
                 dataType: 'jsonp',
                 success: function(res) {
-                    // console.log(res)
+                    console.log(res)
                     renderSuggestList(res)
                 }
             })
@@ -91,11 +85,6 @@
             }
             var htmlstr = template('tpl-suggestList', res)
             $('#suggest-list').html(htmlstr).show()
-
-            //获取到用户输入的内容当作键
-            var k = $('#ipt').val().trim()
-                //需要将数据作为值，进行缓存
-            cacheObj[k] = res
         }
     })
 </script>
