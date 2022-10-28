@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/jquery.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #angle {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./images/angel.gif" alt="" id="angle">
+</body>
+<script>
+    $(function() {
+        var angle = $('#angle')
+            // 定义节流阀
+        var timer = null
+        $(document).on('mousemove', function(e) {
+            // console.log(e.pageX)
+            if (timer) return
+            timer = setTimeout(function() {
+                $(angle).css('top', e.pageY + 'px').css('left', e.pageX + 'px')
+                timer = null
+            }, 16)
+
+        })
+    })
+</script>
+
+</html>
